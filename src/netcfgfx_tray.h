@@ -37,6 +37,7 @@ private slots:
     void quitActionSlot();
     void updateConnectionQuality();
     void performAutoWireless();
+    void performAutoWired();
     void autoWirelessProcessing();
     void onLostConnectionDo(QString interface, QString profileName);
     void reloadSettings();
@@ -71,7 +72,8 @@ private:
 
     QAction                 *quitAction;
     QAction                 *optionsAction;
-    QAction                 *autoConnectAction;
+    QAction                 *autoWirelessAction;
+    QAction                 *autoWiredAction;
     QAction                 *networkScanAction;
     QAction                 *seperator;         // to have a point to start updating menu and insterting new items
 

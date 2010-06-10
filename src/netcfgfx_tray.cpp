@@ -145,8 +145,11 @@ void netcfgfx::createActions()
      }
 
 
-     autoConnectAction = new QAction(QIcon(":cr22-action-wireless.png"),tr("&Auto Connect"),this);
-     connect(autoConnectAction, SIGNAL(triggered()), this, SLOT(performAutoWireless()));
+     autoWirelessAction = new QAction(QIcon(":cr22-action-wireless.png"),tr("&Auto Wireless"),this);
+     connect(autoWirelessAction, SIGNAL(triggered()), this, SLOT(performAutoWireless()));
+
+     autoWiredAction = new QAction(QIcon(":cr22-action-nm_device_wired.png"),tr("&Auto Wired"),this);
+     connect(autoWiredAction, SIGNAL(triggered()), this, SLOT(performAutoWireless()));
 
      networkScanAction = new QAction(QIcon(":/wifi_radar_22x22.png"),tr("&Network Scan"),this);
      connect(networkScanAction, SIGNAL(triggered()), this, SLOT(startNetworkScanner()));
@@ -167,7 +170,8 @@ void netcfgfx::createActions()
  {
      trayIconMenu = new QMenu;
 
-     trayIconMenu->addAction(autoConnectAction);
+     trayIconMenu->addAction(autoWirelessAction);
+     trayIconMenu->addAction(autoWiredAction);
      trayIconMenu->addAction(networkScanAction);
      trayIconMenu->addSeparator()->setText(tr("Profile(s)"));
      trayIconMenu->addActions(actionList);
@@ -412,7 +416,15 @@ void netcfgfx::cechkForConnectedProfiles()
         trayIcon->showMessage("netcfgfx " + version,tr("Disconeccting profile: %1...").arg(profileList.at(0)), QSystemTrayIcon::Information, 3000);
 
         netcfg->terminate();
-        netcfg->start("/usr/bin/netcfg",QStringList() << "-d" << profileList.at(0));
+        QString cmd("");
+        QStringList opts;
+        if(settings->value("use-sudo").toBool()){
+            cmd="sudo";
+            opts << "netcfg";
+        }else{
+            cmd="/usr/bin/netcfg";
+        }
+        netcfg->start(cmd,opts << "-d" << profileList.at(0));
 
         if(!netcfg->waitForFinished())
         {
@@ -546,8 +558,15 @@ QString netcfgfx::getWirelessInterfaceName()
 //-----------------------------------------------------------------------------------------
  void netcfgfx::performAutoWireless()
  {
-    QString interface = getWirelessInterfaceName();
-    autoWireless->start("/usr/bin/netcfg-auto-wireless", QStringList() << interface);
+     QString cmd("");
+     QStringList opts;
+     if(settings->value("use-sudo").toBool()){
+         cmd="sudo";
+         opts << "/etc/rc.d/net-auto-wireless";
+     }else{
+         cmd="/etc/rc.d/net-auto-wireless";
+     }
+    autoWireless->start(cmd, opts << "start");
 
     if(!autoWireless->waitForStarted())
     {
@@ -555,6 +574,28 @@ QString netcfgfx::getWirelessInterfaceName()
         return;
     }
 }
+ //-----------------------------------------------------------------------------------------
+ // Name: performAutoWired()
+ // Desc:
+ //-----------------------------------------------------------------------------------------
+  void netcfgfx::performAutoWired()
+  {
+      QString cmd("");
+      QStringList opts;
+      if(settings->value("use-sudo").toBool()){
+          cmd="sudo";
+          opts << "/etc/rc.d/net-auto-wired";
+      }else{
+          cmd="/etc/rc.d/net-auto-wired";
+      }
+     autoWireless->start(cmd, opts << "start");
+
+     if(!autoWireless->waitForStarted())
+     {
+         trayIcon->showMessage("netcfgfx " + version + tr(" | auto-wired process..."), tr("An error occured while trying to start net-auto-wired"),QSystemTrayIcon::Critical, 8000);
+         return;
+     }
+ }
 
 //-----------------------------------------------------------------------------------------
 // Name: autoWirelessProcessing()
@@ -759,7 +800,6 @@ QString netcfgfx::getWirelessInterfaceStatus(QString interface)
     {
         QMessageBox::critical(this, tr("Error starting netcfg"), tr("An error occured while trying to start netcfg to deactivate profile %1").arg(profileName),
                                   QMessageBox::Ok);
-        QMessageBox::critical(this,"netcfg",netcfg->errorString());
         return;
     }
 

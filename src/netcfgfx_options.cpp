@@ -73,7 +73,7 @@ void netcfgfx_options::loadSettings()
     ui->sudoCheckbox->setChecked(settings.value("use-sudo",true).toBool());
     ui->autoWirelessCheckBox->setChecked(settings.value("auto-wireless",true).toBool());
     ui->qualityRefreshSpinBox->setValue(settings.value("quality-refresh-rate",30).toInt());
-    ui->quitDeactivateCheckBox->setChecked(settings.value("before-exit-deactivate",true).toBool());
+    ui->quitDeactivateCheckBox->setChecked(settings.value("before-exit-deactivate",false).toBool());
     ui->showMessageCheckBox->setChecked(settings.value("show-auto-wireless-progress-messages",true).toBool());
     ui->warningLimitSpinBox->setValue(settings.value("signal-warning-value",15).toInt());
     ui->onLostConnectionDoCheckBox->setChecked(settings.value("auto-connect-on-lost-connection",false).toBool());
