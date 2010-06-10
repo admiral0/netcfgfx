@@ -759,6 +759,7 @@ QString netcfgfx::getWirelessInterfaceStatus(QString interface)
     {
         QMessageBox::critical(this, tr("Error starting netcfg"), tr("An error occured while trying to start netcfg to deactivate profile %1").arg(profileName),
                                   QMessageBox::Ok);
+        QMessageBox::critical(this,"netcfg",netcfg->errorString());
         return;
     }
 
