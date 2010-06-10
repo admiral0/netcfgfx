@@ -2,6 +2,7 @@
 #include <QTextStream>
 #include <QFile>
 #include <QDir>
+#include <QSettings>
 //#include <iostream>
 
 #include "netcfgfx_network_scanner.h"
@@ -49,6 +50,8 @@ netcfgfx_network_scanner::~netcfgfx_network_scanner()
 //-----------------------------------------------------------------------------------------
 void netcfgfx_network_scanner::scanNetwork()
 {
+    QSettings settings(qApp->applicationDirPath() + "/settings",QSettings::NativeFormat,this);
+
     QString wirelessInterface = getWirelessInterfaceName();
     QString wirelessInterfaceStatus = getWirelessInterfaceStatus(wirelessInterface);
 
@@ -64,8 +67,15 @@ void netcfgfx_network_scanner::scanNetwork()
     }
 
     ui->treeWidget->clear();
-
-    iwlist->start("/usr/sbin/iwlist", QStringList() << wirelessInterface << "scan");
+    QString cmd("");
+    QStringList opts;
+    if(settings.value("use-sudo").toBool()){
+        cmd="sudo";
+        opts << "iwlist";
+    }else{
+        cmd="/usr/sbin/iwlist";
+    }
+    iwlist->start(cmd, opts << wirelessInterface << "scan");
 
     if(!iwlist->waitForStarted())
     {

@@ -716,8 +716,8 @@ QString netcfgfx::getWirelessInterfaceStatus(QString interface)
     QString cmd("");
     QStringList opts;
     if(settings->value("use-sudo").toBool()){
-        cmd="/usr/bin/sudo ";
-	opts << "/usr/bin/netcfg";
+        cmd="sudo";
+        opts << "netcfg";
     }else{
 	cmd="/usr/bin/netcfg";
     }
@@ -745,8 +745,8 @@ QString netcfgfx::getWirelessInterfaceStatus(QString interface)
     QString cmd("");
     QStringList opts;
     if(settings->value("use-sudo").toBool()){
-        cmd="/usr/bin/sudo ";
-        opts << "/usr/bin/netcfg";
+        cmd="sudo";
+        opts << "netcfg";
     }else{
         cmd="/usr/bin/netcfg";
     }
