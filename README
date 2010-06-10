@@ -4,5 +4,8 @@ Its goal is to run without requiring root rights and adapt to new netcfg and wpa
 
 What you should expect:
 Gui working
-Netcfg doesn't
+Netcfg works when run as user (sudo setup needed) 
 Pretty notifications
+
+sudoers line
+%network ALL=(root) NOPASSWD: /usr/bin/netcfg, /usr/sbin/iwlist, /etc/rc.d/net-auto-wireless, /etc/rc.d/net-auto-wired
