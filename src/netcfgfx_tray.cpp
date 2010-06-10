@@ -713,11 +713,15 @@ QString netcfgfx::getWirelessInterfaceStatus(QString interface)
 //-----------------------------------------------------------------------------------------
  void netcfgfx::activateProfile(QString profileName, QString interface)
  {
-    QString prefix("");
+    QString cmd("");
+    QStringList opts;
     if(settings->value("use-sudo").toBool()){
-        prefix="sudo ";
+        cmd="/usr/bin/sudo ";
+	opts << "/usr/bin/netcfg";
+    }else{
+	cmd="/usr/bin/netcfg";
     }
-    netcfg->start(prefix+"/usr/bin/netcfg",QStringList() << profileName);
+    netcfg->start(cmd,opts << profileName);
 
     trayIcon->showMessage("netcfgfx " + version, tr("Activating profile: %1...").arg(profileName));
 
@@ -738,11 +742,16 @@ QString netcfgfx::getWirelessInterfaceStatus(QString interface)
 //-----------------------------------------------------------------------------------------
  void netcfgfx::deactivateProfile(QString profileName, QString interface)
  {
-     QString prefix("");
-     if(settings->value("use-sudo").toBool()){
-         prefix="sudo ";
-     }
-    netcfg->start(prefix +"/usr/bin/netcfg",QStringList() << "-d" << profileName);
+    QString cmd("");
+    QStringList opts;
+    if(settings->value("use-sudo").toBool()){
+        cmd="/usr/bin/sudo ";
+        opts << "/usr/bin/netcfg";
+    }else{
+        cmd="/usr/bin/netcfg";
+    }
+
+   netcfg->start(cmd,opts << "-d" << profileName);
 
     trayIcon->showMessage("netcfgfx " + version, tr("Deactivating profile: %1...").arg(profileName));
 
