@@ -17,135 +17,109 @@
    <iconset resource="../resources/images.qrc">
     <normaloff>:/netcfgfx_main_icon.png</normaloff>:/netcfgfx_main_icon.png</iconset>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
+  <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
+    <layout class="QFormLayout" name="formLayout_2">
+     <item row="0" column="0">
       <widget class="QTabWidget" name="tabWidget">
        <property name="enabled">
         <bool>true</bool>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
          <string>General</string>
         </attribute>
-        <widget class="QCheckBox" name="autoWirelessCheckBox">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>20</y>
-           <width>331</width>
-           <height>35</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>perform netcfg-auto-wireless
-on programm startup</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="quitDeactivateCheckBox">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>70</y>
-           <width>321</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>deactivate running profiles
-before program quits</string>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="showMessageCheckBox">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>160</y>
-           <width>391</width>
-           <height>23</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>show auto-wireless progress messages</string>
-         </property>
-        </widget>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>190</y>
-           <width>263</width>
-           <height>78</height>
-          </rect>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
-            <item>
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>wireless quality refresh rate
+        <layout class="QFormLayout" name="formLayout_3">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="sudoCheckbox">
+           <property name="text">
+            <string>Use sudo to call programs (Recommended)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="onLostConnectionDoCheckBox">
+           <property name="text">
+            <string>perform auto-wireless-connect if connection got lost</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QCheckBox" name="showMessageCheckBox">
+           <property name="text">
+            <string>show auto-wireless progress messages</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="2">
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>wireless quality refresh rate
 (default: 30 sec.)</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>show warning message
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>show warning message
 if signal strength is under</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
-            <item>
-             <widget class="QSpinBox" name="qualityRefreshSpinBox">
-              <property name="suffix">
-               <string> s</string>
-              </property>
-              <property name="minimum">
-               <number>1</number>
-              </property>
-              <property name="value">
-               <number>30</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="warningLimitSpinBox">
-              <property name="suffix">
-               <string> %</string>
-              </property>
-              <property name="minimum">
-               <number>1</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QCheckBox" name="onLostConnectionDoCheckBox">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>120</y>
-           <width>341</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>perform auto-wireless-connect
-if connection got lost</string>
-         </property>
-        </widget>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QSpinBox" name="qualityRefreshSpinBox">
+               <property name="suffix">
+                <string> s</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="value">
+                <number>30</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="warningLimitSpinBox">
+               <property name="suffix">
+                <string> %</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="quitDeactivateCheckBox">
+           <property name="text">
+            <string>deactivate running profiles before program quits</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="autoWirelessCheckBox">
+           <property name="text">
+            <string>perform netcfg-auto-wireless on program startup</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tab_3">
         <attribute name="title">
@@ -576,7 +550,7 @@ p, li { white-space: pre-wrap; }
        </widget>
       </widget>
      </item>
-     <item>
+     <item row="1" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <spacer name="horizontalSpacer">
