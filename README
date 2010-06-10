@@ -1,0 +1,3 @@
+This is a fork of netcfgGUI found here http://kde-apps.org/content/show.php/netcfgGUI?content=99509
+
+Its goal is to run without requiring root rights and adapt to new netcfg and wpa_actiond

@@ -1,0 +1,7 @@
+[General]
+auto-wireless=false
+quality-refresh-rate=15
+before-exit-deactivate=true
+show-auto-wireless-progress-messages=false
+signal-warning-value=15
+auto-connect-on-lost-connection=false

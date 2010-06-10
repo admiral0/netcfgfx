@@ -1,0 +1,41 @@
+<RCC>         
+    <qresource prefix="/" >
+        <file>cancel.png</file>
+        <file>cr16-app-knetworkmanager.png</file>
+        <file>ok.png</file>
+        <file>wifi_radar_22x22.png</file>
+        <file>lock.png</file>
+        <file>cr22-action-nm_device_wired.png</file>
+        <file>cr22-action-wireless.png</file>
+        <file>filesave.png</file>
+        <file>exit.png</file>
+        <file>network.png</file>
+        <file>Network_Connection_Manager.png</file>
+        <file>network_local.png</file>
+        <file>configure.png</file>
+        <file>configure_old.png</file>
+        <file>filenew.png</file>
+        <file>filesave.png</file>
+        <file>edit.png</file>
+        <file>edit_add.png</file>
+        <file>edit_remove.png</file>
+        <file>cr22-action-nm_signal_00.png</file>
+        <file>cr22-action-nm_signal_25.png</file>
+        <file>cr22-action-nm_signal_50.png</file>
+        <file>cr22-action-nm_signal_75.png</file>
+        <file>cr22-action-nm_signal_100.png</file>
+        <file>fileopen.png</file>
+        <file>LICENSE</file>
+        <file>unlock.png</file>
+        <file>netcfgfx_main_icon.png</file>
+        <file>excellent.png</file>
+        <file>good.png</file>
+        <file>marginal.png</file>
+        <file>poor.png</file>
+        <file>minimum.png</file>
+        <file>offline.png</file>
+        <file>recur.png</file>
+        <file>up.png</file>
+        <file>down.png</file>
+    </qresource>
+</RCC>        

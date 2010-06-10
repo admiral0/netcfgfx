@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>netcfgfx_profile_editor_UI</class>
+ <widget class="QDialog" name="netcfgfx_profile_editor_UI">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>327</width>
+    <height>555</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Networkprofile Editor</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="images.qrc">
+    <normaloff>:/netcfgfx_main_icon.png</normaloff>:/netcfgfx_main_icon.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_15">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tab">
+        <attribute name="icon">
+         <iconset resource="images.qrc">
+          <normaloff>:/cr16-app-knetworkmanager.png</normaloff>:/cr16-app-knetworkmanager.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>General</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="profileNameLabel">
+               <property name="text">
+                <string>Profilename</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="2">
+              <widget class="QLineEdit" name="profileNameLineEdit"/>
+             </item>
+             <item row="1" column="0" colspan="2">
+              <widget class="QLabel" name="descriptionLabel">
+               <property name="text">
+                <string>Description (optional)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLineEdit" name="descriptionLineEdit"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="interfaceLabel">
+               <property name="text">
+                <string>Interface</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1" colspan="2">
+              <widget class="QComboBox" name="interfaceComboBox"/>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="hostNameLabel">
+               <property name="text">
+                <string>Hostname</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1" colspan="2">
+              <widget class="QLineEdit" name="hostNameLineEdit">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1" colspan="2">
+              <widget class="QLabel" name="interfaceDescLabel">
+               <property name="font">
+                <font>
+                 <pointsize>8</pointsize>
+                 <italic>true</italic>
+                 <underline>false</underline>
+                 <strikeout>false</strikeout>
+                </font>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="commandsGroupBox">
+             <property name="title">
+              <string>run various commands (optional)</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_2">
+                  <item>
+                   <widget class="QCheckBox" name="preupCheckBox">
+                    <property name="text">
+                     <string>PRE_UP</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="postupCheckBox">
+                    <property name="text">
+                     <string>POST_UP</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="predownCheckBox">
+                    <property name="text">
+                     <string>PRE_DOWN</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="postdownCheckBox">
+                    <property name="text">
+                     <string>POST_DOWN</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout">
+                  <item>
+                   <widget class="QLineEdit" name="preupLineEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="postupLineEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="predownLineEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="postdownLineEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="quirksGroupBox">
+             <property name="title">
+              <string>Quirks (optional)</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_17">
+              <item>
+               <widget class="QLineEdit" name="quirksLineEdit"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>288</width>
+               <height>17</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="icon">
+         <iconset resource="images.qrc">
+          <normaloff>:/cr22-action-nm_device_wired.png</normaloff>:/cr22-action-nm_device_wired.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>IP/DNS</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_10">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="QRadioButton" name="dhcpRadioButton">
+               <property name="text">
+                <string>DHCP (auto configuration)</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <widget class="QLabel" name="timeoutLabel">
+                 <property name="text">
+                  <string>DHCP timeout (seconds)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="timeoutSpinBox">
+                 <property name="suffix">
+                  <string> s</string>
+                 </property>
+                 <property name="prefix">
+                  <string/>
+                 </property>
+                 <property name="value">
+                  <number>10</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="staticRadioButton">
+               <property name="text">
+                <string>static connection</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="title">
+              <string/>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <layout class="QGridLayout" name="gridLayout_2">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="ipLabel">
+                  <property name="text">
+                   <string>IP-Address</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="ipLineEdit"/>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="netmaskLabel">
+                  <property name="text">
+                   <string>Subnetmask</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="netmaskLineEdit"/>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="gatewayLabel">
+                  <property name="text">
+                   <string>Gateway</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLineEdit" name="gatewayLineEdit"/>
+                </item>
+                <item row="6" column="0" colspan="2">
+                 <widget class="Line" name="line_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="0">
+                 <widget class="QLabel" name="dns1Label">
+                  <property name="text">
+                   <string>DNS- 1</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="1">
+                 <widget class="QLineEdit" name="dns1LineEdit"/>
+                </item>
+                <item row="9" column="0">
+                 <widget class="QLabel" name="dns2label">
+                  <property name="text">
+                   <string>DNS- 2</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="9" column="1">
+                 <widget class="QLineEdit" name="dns2LineEdit"/>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="broadcastLabel">
+                  <property name="text">
+                   <string>Broadcast</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="broadcastLineEdit"/>
+                </item>
+                <item row="7" column="0">
+                 <widget class="QLabel" name="domainLabel">
+                  <property name="text">
+                   <string>Domain</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="1">
+                 <widget class="QLineEdit" name="domainLineEdit"/>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>98</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_3">
+        <attribute name="icon">
+         <iconset resource="images.qrc">
+          <normaloff>:/cr22-action-wireless.png</normaloff>:/cr22-action-wireless.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>Wireless</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_18">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_16">
+           <item>
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="title">
+              <string>Wireless Protocol</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <widget class="QLabel" name="protocolLabel">
+                  <property name="text">
+                   <string>Protocol</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="protocolComboBox">
+                  <item>
+                   <property name="text">
+                    <string notr="true">WEP</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string notr="true">WPA-CONFIG</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string notr="true">WPA</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string notr="true">NONE</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_3">
+             <property name="title">
+              <string>Wireless network Configuration</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QLabel" name="essidLabel">
+                  <property name="text">
+                   <string>ESSID</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="essidLineEdit"/>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="scanPushButton">
+                  <property name="text">
+                   <string>Scan...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="images.qrc">
+                    <normaloff>:/wifi_radar_22x22.png</normaloff>:/wifi_radar_22x22.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QLabel" name="keyLabel">
+                  <property name="text">
+                   <string>Key</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="keyLineEdit"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QGridLayout" name="gridLayout_3">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="timeoutLabel_2">
+                  <property name="text">
+                   <string>Wifi Timeout (seconds)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QSpinBox" name="spinBox">
+                  <property name="suffix">
+                   <string> s</string>
+                  </property>
+                  <property name="value">
+                   <number>15</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="scanLabel">
+                  <property name="text">
+                   <string>Wifi scan (optional)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QComboBox" name="scanComboBox">
+                  <item>
+                   <property name="text">
+                    <string>Yes</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>No</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_4">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="title">
+              <string>WPA Configuration</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_13">
+              <item>
+               <layout class="QGridLayout" name="gridLayout_4">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="wpaConfLabel">
+                  <property name="text">
+                   <string>Config</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="wpaConfLineEdit"/>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QPushButton" name="browsePushButton">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="images.qrc">
+                    <normaloff>:/fileopen.png</normaloff>:/fileopen.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="wpaOptsLabel">
+                  <property name="text">
+                   <string>Options</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="wpaOptsLineEdit"/>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="iwoptsGroupBox">
+             <property name="title">
+              <string>Pass *custom* options to iwconfig</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_14">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_6">
+                <item>
+                 <widget class="QLineEdit" name="iwoptsLineEdit"/>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>138</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="savePushButton">
+         <property name="text">
+          <string>Save</string>
+         </property>
+         <property name="icon">
+          <iconset resource="images.qrc">
+           <normaloff>:/filesave.png</normaloff>:/filesave.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="cancelPushButton">
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+         <property name="icon">
+          <iconset resource="images.qrc">
+           <normaloff>:/cancel.png</normaloff>:/cancel.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>dhcpRadioButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>groupBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>46</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>71</x>
+     <y>141</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>staticRadioButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>timeoutLabel</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>116</x>
+     <y>111</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>109</x>
+     <y>81</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>staticRadioButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>timeoutSpinBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>200</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>229</x>
+     <y>85</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>staticRadioButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>groupBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>45</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>54</x>
+     <y>136</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dhcpRadioButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>timeoutLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>90</x>
+     <y>56</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>88</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dhcpRadioButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>timeoutSpinBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>269</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>262</x>
+     <y>79</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>netcfgfx_profile_editor_UI</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>252</x>
+     <y>461</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>116</x>
+     <y>471</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>preupCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>preupLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>98</x>
+     <y>246</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>172</x>
+     <y>233</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>postupCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>postupLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>89</x>
+     <y>269</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>201</x>
+     <y>273</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>predownCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>predownLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>87</x>
+     <y>298</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>181</x>
+     <y>296</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>postdownCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>postdownLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>329</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>187</x>
+     <y>331</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
