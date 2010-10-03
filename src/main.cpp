@@ -2,7 +2,6 @@
 #include <QtCore/QTranslator>
 #include <QtCore/QLocale>
 #include <QtGui/QMessageBox>
-
 #include "netcfgfx_tray.h"
 
 //-----------------------------------------------------------------------------------------
@@ -15,6 +14,7 @@ int main(int argc, char *argv[])
 
     QApplication::setQuitOnLastWindowClosed(false);
     netcfgfx netcfgfx;
+
 
     QTranslator appTranslator;
     appTranslator.load("netcfgfx_" + QLocale::system().name(),

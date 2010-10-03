@@ -52,6 +52,7 @@ void netcfgfx_options::saveSettings()
     QSettings settings(qApp->applicationDirPath() + "/settings",QSettings::NativeFormat,this);
     settings.setValue("use-sudo",ui->sudoCheckbox->isChecked());
     settings.setValue("auto-wireless",ui->autoWirelessCheckBox->isChecked());
+    settings.setValue("auto-wired",ui->autoWiredCheckStartup->isChecked());
     settings.setValue("quality-refresh-rate",ui->qualityRefreshSpinBox->value());
     settings.setValue("before-exit-deactivate",ui->quitDeactivateCheckBox->isChecked());
     settings.setValue("show-auto-wireless-progress-messages",ui->showMessageCheckBox->isChecked());
@@ -72,6 +73,7 @@ void netcfgfx_options::loadSettings()
     QSettings settings(qApp->applicationDirPath() + "/settings",QSettings::NativeFormat,this);
     ui->sudoCheckbox->setChecked(settings.value("use-sudo",true).toBool());
     ui->autoWirelessCheckBox->setChecked(settings.value("auto-wireless",true).toBool());
+    ui->autoWiredCheckStartup->setChecked(settings.value("auto-wired",false).toBool());
     ui->qualityRefreshSpinBox->setValue(settings.value("quality-refresh-rate",30).toInt());
     ui->quitDeactivateCheckBox->setChecked(settings.value("before-exit-deactivate",false).toBool());
     ui->showMessageCheckBox->setChecked(settings.value("show-auto-wireless-progress-messages",true).toBool());

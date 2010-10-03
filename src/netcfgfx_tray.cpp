@@ -59,8 +59,11 @@ netcfgfx::netcfgfx(QWidget *parent)
 
     settings = new QSettings(qApp->applicationDirPath() + "/settings",QSettings::NativeFormat,this);
 
-    if((profileList.isEmpty()) && (settings->value("auto-wireless",true).toBool()))
-        QTimer::singleShot(700, this, SLOT(performAutoWireless()));
+    if((profileList.isEmpty()) && (settings->value("auto-wireless",true).toBool()) || settings->value("auto-wired",false).toBool())
+        if(settings->value("auto-wireless",true).toBool())
+            QTimer::singleShot(700, this, SLOT(performAutoWireless()));
+        if(settings->value("auto-wired",false).toBool())
+            QTimer::singleShot(700, this, SLOT(performAutoWired()));
     else
         QTimer::singleShot(700, this, SLOT(cechkForConnectedProfiles()));
 
@@ -149,7 +152,7 @@ void netcfgfx::createActions()
      connect(autoWirelessAction, SIGNAL(triggered()), this, SLOT(performAutoWireless()));
 
      autoWiredAction = new QAction(QIcon(":cr22-action-nm_device_wired.png"),tr("&Auto Wired"),this);
-     connect(autoWiredAction, SIGNAL(triggered()), this, SLOT(performAutoWireless()));
+     connect(autoWiredAction, SIGNAL(triggered()), this, SLOT(performAutoWired()));
 
      networkScanAction = new QAction(QIcon(":/wifi_radar_22x22.png"),tr("&Network Scan"),this);
      connect(networkScanAction, SIGNAL(triggered()), this, SLOT(startNetworkScanner()));
