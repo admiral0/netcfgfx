@@ -11,6 +11,7 @@
 #include "netcfgfx_notifier.h"
 #include <QDBusConnection>
 #include <iwlib.h>
+#include <QDebug>
 
 #include "netcfgfx_tray.h"
 #include "ui_netcfgfx_profile.h"
@@ -460,13 +461,14 @@ void netcfgfx::cechkForConnectedProfiles()
         if(exit_stat == 0)
         {
             int quality = stats.qual.qual;
+            int maxqual = range.max_qual.qual;
 
             if(quality == 0)
             {
                 emit lostConnection(tmpInterface, tmpProfileName);
                 return;
             }
-
+            quality=quality*100/maxqual;
             int minStrength = settings->value("signal-warning-value",15).toInt();
             if(quality <= minStrength)
                 trayIcon->showMessage("netcfgfx " + version, tr("warning, signal strenght is under %1 %").arg(minStrength));
