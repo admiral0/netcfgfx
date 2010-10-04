@@ -29,7 +29,6 @@ netcfgfx::netcfgfx(QWidget *parent)
     ui->setupUi(this);
 
     ui->treeWidget->setAlternatingRowColors(true);
-
     netcfg = new QProcess(this);
     autoWireless = new QProcess(this);
     autoWireless->setProcessChannelMode(QProcess::MergedChannels);
@@ -775,7 +774,7 @@ QString netcfgfx::getWirelessInterfaceStatus(QString interface)
                                   QMessageBox::Ok);
         return;
     }
-
+    qualityTimer->start(settings->value("quality-refresh-rate",30).toInt() * 1000);
     tmpProfileName = profileName;
     tmpInterface = interface;
  }
