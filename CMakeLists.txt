@@ -1,5 +1,6 @@
 project( netcfgfx )
 cmake_minimum_required( VERSION 2.6 )
+
 add_definitions ( -Wall )
 SET (QT_USE_QTDBUS true)
 find_package ( Qt4 REQUIRED )
@@ -16,10 +17,4 @@ if(NOT IWLIB_LIB)
 	message(FATAL_ERROR "Unable to find libiw.so")
 endif(NOT IWLIB_LIB)
 
-include_directories (
-	${CMAKE_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
-	${QT_QTCORE_INCLUDE_DIR} ${QT_QTGUI_INCLUDE_DIR}
-	)
-
-add_subdirectory(xml)
 add_subdirectory(src)
