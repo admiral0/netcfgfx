@@ -16,5 +16,9 @@ find_library(IWLIB_LIB NAMES iw)
 if(NOT IWLIB_LIB)
 	message(FATAL_ERROR "Unable to find libiw.so")
 endif(NOT IWLIB_LIB)
-
+configure_file (
+  "${netcfgfx_SOURCE_DIR}/config.h.in"
+  "${netcfgfx_BINARY_DIR}/config.h"
+  )
+add_subdirectory(lib)
 add_subdirectory(src)

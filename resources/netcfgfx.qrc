@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/global">
+        <file>netcfgfx.png</file>
+    </qresource>
+</RCC>
