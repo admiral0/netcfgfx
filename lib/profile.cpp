@@ -38,12 +38,6 @@ void Profile::emitUpdated(){
 void Profile::emitRemoved(){
     emit removed();
 }
-void Profile::connect(){
-	Util::instance()->connectProfile(this->name);
-}
-void Profile::disconnect(){
-	Util::instance()->disconnectProfile(this->name);
-}
 bool Profile::isConnected(){
 	return status;
 }

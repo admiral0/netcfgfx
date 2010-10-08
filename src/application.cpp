@@ -4,6 +4,7 @@
 #include "config.h"
 #include "lib/profile.h"
 #include "lib/util.h"
+
 Application::Application(int argc, char **argv) : QApplication(argc,argv){
     qDebug()<<"Starting application";
     QDBusConnection session=QDBusConnection::connectToBus(QDBusConnection::SessionBus,"session");
@@ -17,7 +18,6 @@ Application::Application(int argc, char **argv) : QApplication(argc,argv){
     //Connect all signals
     connect(tray,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,SLOT(trayAction(QSystemTrayIcon::ActivationReason)));
     populateMenu();
-    util->connectProfile("manu");
 }
 Application::~Application(){
     delete tray;
@@ -41,8 +41,4 @@ void Application::showMenu(){
 
 }
 void Application::populateMenu(){
-}
-Application* Application::instance(){
-	Q_ASSERT(qApp);
-	return qobject_cast<Application*>(qApp);
 }

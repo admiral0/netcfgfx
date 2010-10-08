@@ -16,13 +16,14 @@ ProfileDialog::ProfileDialog(QWidget *parent) :
     ui->activateProfile->setIcon(QIcon::fromTheme("network-transmit-receive"));
     ui->close->setIcon(QIcon::fromTheme("window-close"));
     connect(ui->close,SIGNAL(clicked()),this,SLOT(close()));
-    connect(ui->profiles,SIGNAL(itemSelectionChanged()),this,SLOT(updateButton()));
+    connect(ui->profiles,SIGNAL(cellPressed(int,int)),this,SLOT(updateButton(int,int)));
     setWindowIcon(QIcon(":/global/netcfgfx.png"));
 
     //Add elements to list
     populateList();
     ui->profiles->resizeColumnsToContents();
     ui->profiles->selectRow(0);
+    updateButton(0,0);
 
 }
 void ProfileDialog::populateList(){
@@ -47,10 +48,8 @@ void ProfileDialog::populateList(){
         w->setItem(i,3,type);
     }
 }
-void ProfileDialog::updateButton(){
+void ProfileDialog::updateButton(int row,int col){
 	Profile *p;
-	QTableWidgetItem *i= ui->profiles->selectedItems().at(0);
-	int row=i->row();
 	p=Util::instance()->getProfileByName(QString(ui->profiles->item(row,1)->text()));
 	if(p->isConnected()){
 		ui->activateProfile->setIcon(QIcon::fromTheme("network-offline"));

@@ -14,7 +14,7 @@ public:
 signals:
 
 public slots:
-	void updateButton();
+	void updateButton(int row,int col);
 private:
     void populateList();
     Ui_Profiles *ui;
