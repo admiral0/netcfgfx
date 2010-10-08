@@ -27,6 +27,8 @@ signals:
     void removed();
 
 public slots:
+	void connect();
+	void disconnect();
     void emitUpdated();
     void emitRemoved();
 private:

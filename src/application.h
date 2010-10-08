@@ -16,6 +16,7 @@ public:
     ~Application();
     notifier* getNotifier();
     QList<Profile*>* getProfiles();
+    static Application* instance();
 signals:
 
 public slots:
