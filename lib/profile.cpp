@@ -28,7 +28,7 @@ QString Profile::getType(){
     return type;
 }
 
-QString Profile::getProperty(QString key){
+QString Profile::getProfileProperty(QString key){
     return vars->value(key);
 }
 
@@ -38,7 +38,7 @@ void Profile::emitUpdated(){
 void Profile::emitRemoved(){
     emit removed();
 }
-bool Profile::isConnected(){
+bool Profile::isProfileConnected(){
 	return status;
 }
 void Profile::populate(QString profile_path, QHash<QString, QString> *options){

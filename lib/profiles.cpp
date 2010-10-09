@@ -2,7 +2,7 @@
 #include "config.h"
 #include <QDir>
 #include <QDebug>
-
+Profiles* Profiles::self(0);
 Profiles::Profiles() :
     QObject(0)
 {
@@ -19,7 +19,7 @@ Profiles::Profiles() :
         watcher->addPath(file.absoluteFilePath());
         connect(watcher,SIGNAL(fileChanged(QString)),this,SLOT(notifyChangedProfile(QString)));
     }
-
+    self=this;
 }
 Profiles::~Profiles(){
     delete watcher;
@@ -46,4 +46,8 @@ Profile* Profiles::getProfile(QString name){
 }
 QList<Profile*>* Profiles::getProfiles(){
     return profiles;
+}
+Profiles* Profiles::instance(){
+	Q_ASSERT(self);
+	return self;
 }

@@ -1,30 +1,14 @@
 #include "util.h"
-Util* Util::self(0);
-Util::Util(QList<Profile*> *profiles, QObject *parent) :
-    QObject(parent)
-{
-    this->profiles=profiles;
-    self=this;
-}
-void Util::connectProfile(QString profile){
-    int size=profiles->size();
-    /* STUB */
-}
-void Util::disconnectProfile(QString profile){
-    int size=profiles->size();
-    /* STUB */
-}
-Util* Util::instance(){
-    Q_ASSERT(self);
-    return self;
-}
+#include "profile.h"
+#include "profiles.h"
+#include <QString>
 Profile* Util::getProfileByName(QString name){
 	Profile *p=NULL;
-	int size=profiles->size();
+	int size=Profiles::instance()->getProfiles()->size();
 	for(int i=0;i<size;i++){
-		Profile *pt=profiles->at(i);
+		Profile *pt=Profiles::instance()->getProfiles()->at(i);
 		if(pt->getName()==name)
-			p=pt;
+			return pt;
 	}
-	return p;
+	return NULL;
 }

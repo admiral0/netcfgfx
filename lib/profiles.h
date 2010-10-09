@@ -12,6 +12,7 @@ class Profiles : public QObject
 public:
     explicit Profiles();
     ~Profiles();
+    static Profiles* instance();
     Profile* getProfile(QString name);
     QList<Profile*>* getProfiles();
 signals:
@@ -21,6 +22,7 @@ public slots:
 private:
     QFileSystemWatcher *watcher;
     QList<Profile*> *profiles;
+    static Profiles* self;
 };
 
 #endif // PROFILES_H

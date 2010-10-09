@@ -1,12 +1,32 @@
 #include "profiledialog.h"
 #include <QList>
-#include "application.h"
 #include "lib/profile.h"
+#include "lib/util.h"
+#include "lib/profiles.h"
+#include <QMenu>
+#include "notifier.h"
 
 ProfileDialog::ProfileDialog(QWidget *parent) :
     QDialog(parent)
 {
-
+	/*
+	 * Start re QApp
+	 */
+		qDebug()<<"Starting application";
+	    QDBusConnection session=QDBusConnection::connectToBus(QDBusConnection::SessionBus,"session");
+	    profiles=new Profiles();
+	    tray=new notifier(session);
+	    //dlg=new ProfileDialog();
+	    context=new QMenu();
+	    tray->setIcon(QIcon(":/global/netcfgfx.png"));
+	    tray->show();
+	    //Connect all signals
+	    connect(tray,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,SLOT(trayAction(QSystemTrayIcon::ActivationReason)));
+	    //populateMenu();
+	    qDebug()<<Util::getProfileByName(profiles->getProfiles()->at(0)->getName());
+	/*
+	 * End
+	 */
     ui=new Ui_Profiles();
     ui->setupUi(this);
     ui->newProfile->setIcon(QIcon::fromTheme("list-add"));
@@ -27,21 +47,20 @@ ProfileDialog::ProfileDialog(QWidget *parent) :
 }
 void ProfileDialog::populateList(){
     QTableWidget *w=ui->profiles;
-    Application *app=qobject_cast<Application*> qApp;
-    QList<Profile*>* profiles=app->getProfiles();
+    QList<Profile*>* profiles=this->profiles->getProfiles();
     int size=profiles->size();
     w->setRowCount(size);
     for(int i=0;i<size;i++){
         Profile *p=profiles->at(i);
         QTableWidgetItem *status;
-        if(p->isConnected())
+        if(p->isProfileConnected())
         	status=new QTableWidgetItem(QIcon::fromTheme("network-transmit-receive"),"");
         else
         	status=new QTableWidgetItem(QIcon::fromTheme("network-offline"),"");
         w->setItem(i,0,status);
         QTableWidgetItem *profile=new QTableWidgetItem(p->getName());
         w->setItem(i,1,profile);
-        QTableWidgetItem *interface=new QTableWidgetItem(p->getProperty("INTERFACE"));
+        QTableWidgetItem *interface=new QTableWidgetItem(p->getProfileProperty("INTERFACE"));
         w->setItem(i,2,interface);
         QTableWidgetItem *type=new QTableWidgetItem(p->getType());
         w->setItem(i,3,type);
@@ -50,12 +69,19 @@ void ProfileDialog::populateList(){
 void ProfileDialog::updateButton(){
 	int row=ui->profiles->currentRow();
 	Profile *p;
-	p=Util::instance()->getProfileByName(QString(ui->profiles->item(row,1)->text()));
-	if(p->isConnected()){
+	p=Util::getProfileByName(QString(ui->profiles->item(row,1)->text()));
+	if(p->isProfileConnected()){
 		ui->activateProfile->setIcon(QIcon::fromTheme("network-offline"));
 		ui->activateProfile->setText(tr("Disconnect"));
 	}else{
 		ui->activateProfile->setIcon(QIcon::fromTheme("network-transmit-receive"));
 		ui->activateProfile->setText(tr("Connect"));
 	}
+}
+void ProfileDialog::trayAction(QSystemTrayIcon::ActivationReason reason){
+    if(reason==notifier::DoubleClick)
+        this->show();
+    if(reason==notifier::Context){
+    	qDebug()<<"Ciao";
+    }
 }

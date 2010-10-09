@@ -13,16 +13,16 @@ public:
     QString getFilePath();
     QString getName();
     QString getType();
-    QString getProperty(QString key);
-    bool isConnected();
+    QString getProfileProperty(QString key);
+    bool isProfileConnected();
     /*!
       populates QHash with variables from config file
      */
     void populate(QString profile_path,QHash<QString,QString> *options);
 
 signals:
-    void connected();
-    void disconnected();
+    //void connected();
+    //void disconnected();
     void updated();
     void removed();
 

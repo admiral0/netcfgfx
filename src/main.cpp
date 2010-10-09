@@ -1,8 +1,10 @@
-#include "application.h"
-#include <QTimer>
+#include <QApplication>
+#include "profiledialog.h"
+
 int main(int argc, char **argv){
-    Application a(argc,argv);
-    //Don't close app when all windows are destroyed
-    Application::setQuitOnLastWindowClosed(false);
+    QApplication a(argc,argv);
+    QApplication::setQuitOnLastWindowClosed(false);
+    a.setApplicationName("Netcfgfx");
+    ProfileDialog *dlg=new ProfileDialog();
     return a.exec();
 }

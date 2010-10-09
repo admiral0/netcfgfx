@@ -5,13 +5,11 @@ include_directories (
         )
 set(netcfgfx_MOCS
     notifier.h
-    application.h
     profiledialog.h
     )
 set(netcfgfx_SRCS
     main.cpp
     notifier.cpp
-    application.cpp
     profiledialog.cpp
     )
 set(netcfgfx_UIS
