@@ -8,7 +8,7 @@ Profiles::Profiles() :
 {
     profiles=new QList<Profile*>();
     watcher=new QFileSystemWatcher();
-
+    action=new QProcess();
     QDir net(NETCFG_PROFILES_PATH);
     qDebug()<<"Searching profiles in"<<NETCFG_PROFILES_PATH;
     QFileInfoList list= net.entryInfoList(QDir::Files);
@@ -50,4 +50,37 @@ QList<Profile*>* Profiles::getProfiles(){
 Profiles* Profiles::instance(){
 	Q_ASSERT(self);
 	return self;
+}
+void Profiles::connectProfile(Profile* p){
+	qDebug()<<"Connect"<<p->getName();
+	QString name=p->getName();
+	actionTarget=p;
+	actiondesc="connect";
+	action->start("sudo",QStringList()<<"netcfg"<<name);
+	connect(action,SIGNAL(finished( int, QProcess::ExitStatus)),this,SLOT(actionFinished( int, QProcess::ExitStatus )));
+}
+void Profiles::disconnectProfile(Profile* p){
+	qDebug()<<"Disconnect"<<p->getName();
+	QString name=p->getName();
+	actionTarget=p;
+	actiondesc="disconnect";
+	action->start("sudo",QStringList()<<"netcfg"<<"-d"<<name);
+	connect(action,SIGNAL(finished ( int, QProcess::ExitStatus )),this,SLOT(actionFinished ( int, QProcess::ExitStatus )));
+}
+void Profiles::actionFinished ( int exitCode, QProcess::ExitStatus exitStatus ){
+	QString result=action->readAll();
+	if(result.contains("DONE")){
+		if(actiondesc=="connect"){
+			actionTarget->emitConnected();
+		}else if(actiondesc=="disconnect"){
+			actionTarget->emitDisconnected();
+		}
+		emit profileChanged(actionTarget->getName(),actiondesc,result);
+	}else{
+		emit profileChanged(actionTarget->getName(),"error",result);
+	}
+	qDebug()<<"WTF?"<<result;
+	action->kill();
+	delete action;
+	action=new QProcess();
 }

@@ -1,9 +1,11 @@
 #include "profile.h"
+#include "profiles.h"
 #include "util.h"
 #include <QFile>
 #include <QFileInfo>
 #include <QDebug>
 #include <QRegExp>
+#include <QDir>
 
 Profile::Profile(QString path) :
     QObject(0)
@@ -38,8 +40,26 @@ void Profile::emitUpdated(){
 void Profile::emitRemoved(){
     emit removed();
 }
+void Profile::emitConnected(){
+	status=true;
+	emit connected();
+}
+void Profile::emitDisconnected(){
+	status=false;
+	emit disconnected();
+}
+void Profile::connectProfile(){
+	Profiles::instance()->connectProfile(this);
+}
+void Profile::disconnectProfile(){
+	Profiles::instance()->disconnectProfile(this);
+}
 bool Profile::isProfileConnected(){
-	return status;
+	QDir running("/var/run/network/profiles");
+	if(running.entryList().contains(this->getName())){
+		return true;
+	}
+	return false;
 }
 void Profile::populate(QString profile_path, QHash<QString, QString> *options){
     Q_ASSERT(options);

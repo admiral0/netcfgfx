@@ -44,6 +44,7 @@ ProfileDialog::ProfileDialog(QWidget *parent) :
     ui->profiles->resizeColumnsToContents();
     ui->profiles->selectRow(0);
 
+    connect(Profiles::instance(),SIGNAL(profileChanged(QString,QString,QString)),this,SLOT(notifyOnTray(QString,QString,QString)));
 }
 void ProfileDialog::populateList(){
     QTableWidget *w=ui->profiles;
@@ -70,10 +71,13 @@ void ProfileDialog::updateButton(){
 	int row=ui->profiles->currentRow();
 	Profile *p;
 	p=Util::getProfileByName(QString(ui->profiles->item(row,1)->text()));
+	disconnect(ui->activateProfile,SIGNAL(released()),0,0);
 	if(p->isProfileConnected()){
+		connect(ui->activateProfile,SIGNAL(released()),p,SLOT(disconnectProfile()));
 		ui->activateProfile->setIcon(QIcon::fromTheme("network-offline"));
 		ui->activateProfile->setText(tr("Disconnect"));
 	}else{
+		connect(ui->activateProfile,SIGNAL(released()),p,SLOT(connectProfile()));
 		ui->activateProfile->setIcon(QIcon::fromTheme("network-transmit-receive"));
 		ui->activateProfile->setText(tr("Connect"));
 	}
@@ -84,4 +88,9 @@ void ProfileDialog::trayAction(QSystemTrayIcon::ActivationReason reason){
     if(reason==notifier::Context){
     	qDebug()<<"Ciao";
     }
+}
+void ProfileDialog::notifyOnTray(QString name,QString what,QString info){
+	populateList();
+	updateButton();
+	tray->showMessage(name,what+info,notifier::Information);
 }

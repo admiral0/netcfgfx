@@ -2,6 +2,7 @@
 #include "profile.h"
 #include "profiles.h"
 #include <QString>
+#include <QProcess>
 Profile* Util::getProfileByName(QString name){
 	Profile *p=NULL;
 	int size=Profiles::instance()->getProfiles()->size();
@@ -11,4 +12,8 @@ Profile* Util::getProfileByName(QString name){
 			return pt;
 	}
 	return NULL;
+}
+QProcess* Util::connectProfileByName(QString name){
+	Profile *p=getProfileByName(name);
+	Profiles::instance()->connectProfile(p);
 }

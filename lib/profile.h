@@ -21,14 +21,18 @@ public:
     void populate(QString profile_path,QHash<QString,QString> *options);
 
 signals:
-    //void connected();
-    //void disconnected();
+    void connected();
+    void disconnected();
     void updated();
     void removed();
 
 public slots:
+	void connectProfile();
+	void disconnectProfile();
     void emitUpdated();
     void emitRemoved();
+    void emitConnected();
+    void emitDisconnected();
 private:
     QString name;
     QString path;

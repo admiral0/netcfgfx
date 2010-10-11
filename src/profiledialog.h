@@ -17,6 +17,7 @@ signals:
 public slots:
 	void updateButton();
 	void trayAction(QSystemTrayIcon::ActivationReason);
+	void notifyOnTray(QString name,QString what,QString info);
 private:
     void populateList();
     Ui_Profiles *ui;
